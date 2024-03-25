@@ -1,8 +1,13 @@
+import MobileNav from "@/components/common/mobile-nav";
+import Sidebar from "@/components/common/sidebar";
 import React from "react";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="root">
+      <Sidebar />
+      <MobileNav />
+
       <div className="root-container">
         <div className="wrapper">{children}</div>
       </div>
@@ -10,4 +15,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default layout;
+export default Layout;
