@@ -19,7 +19,6 @@ interface ToggleThemeProps {
 
 export function ToggleTheme({ size, className }: ToggleThemeProps) {
   const { setTheme } = useTheme();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
