@@ -1,6 +1,6 @@
 import mongoose, { Mongoose } from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URL = process.env.MONGODB_URL;
 
 interface MongooseConnection {
   conn: Mongoose | null;
@@ -18,18 +18,19 @@ export const connectDB = async () => {
     return cached.conn;
   }
 
-  if (!MONGODB_URI) {
-    throw new Error("Missing MONGODB_URI");
+  if (!MONGODB_URL) {
+    throw new Error("Missing MONGODB_URL");
   }
 
   cached.promise =
     cached.promise ||
-    mongoose.connect(MONGODB_URI, {
+    mongoose.connect(MONGODB_URL, {
       dbName: "visioncraft",
       bufferCommands: false,
-    });
+    })
 
   cached.conn = await cached.promise;
+  console.log("Connected to MongoDB");
 
   return cached.conn;
 };
