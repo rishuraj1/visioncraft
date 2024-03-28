@@ -23,19 +23,17 @@ const UserSchema = new Schema(
     },
     firstName: {
       type: String,
-      required: true,
     },
     lastName: {
       type: String,
-      required: true,
     },
     planId: {
       type: Number,
-      required: true,
+      default: 0,
     },
     creditsBalance: {
       type: Number,
-      required: true,
+      default: 10,
     },
   },
   { timestamps: true },

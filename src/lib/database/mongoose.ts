@@ -27,7 +27,7 @@ export const connectDB = async () => {
     mongoose.connect(MONGODB_URL, {
       dbName: "visioncraft",
       bufferCommands: false,
-    })
+    });
 
   cached.conn = await cached.promise;
   console.log("Connected to MongoDB");
