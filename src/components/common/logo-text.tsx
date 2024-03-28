@@ -7,13 +7,13 @@ interface LogoTextProps {
 
 const LogoText = ({ size }: LogoTextProps) => {
   return (
-    <div className="flex items-center justify-center text-center">
+    <div className="flex gap-2 items-center justify-center text-center">
       <Image
-        src={"/logo-icon.svg"}
+        src={"/logo.png"}
         alt="logo"
-        width={size === "small" ? 40 : 80}
-        height={size === "small" ? 40 : 80}
-        className="object-contain"
+        width={size === "small" ? 40 : 60}
+        height={size === "small" ? 40 : 60}
+        className="object-center relative bottom-1"
       />
       <span
         className={cn(

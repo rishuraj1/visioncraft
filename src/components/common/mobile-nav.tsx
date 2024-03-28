@@ -66,7 +66,7 @@ export const navLinks = [
 const MobileNav = () => {
   const pathname = usePathname();
   return (
-    <header className="flex justify-between items-center shadow-md pr-5 bg-white lg:hidden">
+    <header className="flex justify-between items-center shadow-md pr-5 lg:hidden">
       <Link href={"/"} className="flex gap-2 items-center md:py-2">
         <LogoText size="medium" />
       </Link>
