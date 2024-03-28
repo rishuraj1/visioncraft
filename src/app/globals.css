@@ -76,23 +76,12 @@
 }
 
 .auth {
-  @apply flex-center min-h-screen w-full bg-purple-100;
-}
-
-.root {
-  @apply flex min-h-screen w-full flex-col bg-white lg:flex-row;
-}
-
-.root-container {
-  @apply mt-16 flex-1 overflow-auto py-8 lg:mt-0 lg:max-h-screen lg:py-10;
+  @apply flex justify-between items-center min-h-screen w-full bg-purple-100;
 }
 
 /* ========================================== TAILWIND STYLES */
 @layer utilities {
   /* ===== UTILITIES */
-  .wrapper {
-    @apply max-w-5xl mx-auto px-5 md:px-10 w-full text-dark-400 p-16-regular;
-  }
 
   .gradient-text {
     @apply bg-purple-gradient bg-cover bg-clip-text text-transparent;

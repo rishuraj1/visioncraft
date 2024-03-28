@@ -54,10 +54,10 @@ export const navLinks = [
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <aside className="hidden h-screen w-72 bg-white p-5 shadow-md shadow-purple-200/50 lg:flex">
+    <aside className="hidden h-screen w-72 p-5 shadow-md shadow-purple-200/50 dark:shadow-purple-300/25 dark:shadow-sm lg:flex">
       <div className="flex size-full flex-col gap-4">
         <Link href="/" className="flex items-center gap-2">
-          <LogoText />
+          <LogoText size="medium" />
         </Link>
 
         <nav className="h-full flex-1 flex-col justify-between md:flex md:gap-4">
@@ -68,7 +68,7 @@ const Sidebar = () => {
                 return (
                   <li
                     key={link?.route}
-                    className={`hidden w-full flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-700"}`}
+                    className={`hidden w-full hover:bg-purple-gradient transition flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-600 hover:text-white hover:dark:text-white dark:text-zinc-500"}`}
                   >
                     <LinkItem link={link} isActive={isActive} />
                   </li>
@@ -82,7 +82,7 @@ const Sidebar = () => {
                 return (
                   <li
                     key={link?.route}
-                    className={`hidden w-full flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-700"}`}
+                    className={`hidden w-full hover:bg-purple-gradient transition flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-600 hover:text-white hover:dark:text-white dark:text-zinc-500"}`}
                   >
                     <LinkItem link={link} isActive={isActive} />
                   </li>
