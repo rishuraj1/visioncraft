@@ -28,6 +28,7 @@ export default function RootLayout({
       <body
         className={cn(
           "font-IBMPlex antialiased bg-white dark:bg-gray-900/70",
+          "lg:p-0 p-4",
           IBMPlex.variable,
         )}
       >
@@ -38,7 +39,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AuthProvider>
-            <ToggleTheme size="icon" className="absolute bottom-6 right-5" />
+            <ToggleTheme
+              size="icon"
+              className="absolute lg:flex hidden bottom-6 left-52"
+            />
             {children}
           </AuthProvider>
         </ThemeProvider>

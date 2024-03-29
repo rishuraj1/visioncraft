@@ -1,17 +1,8 @@
 "use client";
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetOverlay,
-  SheetPortal,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import React from "react";
+
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import LogoText from "./logo-text";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -19,6 +10,7 @@ import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import LinkItem from "./link-item";
 import { Button } from "../ui/button";
+import { ToggleTheme } from "../toggle-theme";
 
 export const navLinks = [
   {
@@ -66,12 +58,13 @@ export const navLinks = [
 const MobileNav = () => {
   const pathname = usePathname();
   return (
-    <header className="flex justify-between items-center shadow-md pr-5 lg:hidden">
+    <header className="flex justify-between items-center shadow-md lg:hidden">
       <Link href={"/"} className="flex gap-2 items-center md:py-2">
         <LogoText size="medium" />
       </Link>
 
-      <nav className="flex gap-2">
+      <nav className="flex gap-3">
+        <ToggleTheme size="icon" className="flex-center bg-transparent" />
         <SignedIn>
           <Sheet>
             <SheetTrigger>
@@ -89,7 +82,7 @@ const MobileNav = () => {
                         key={link?.route}
                         className={`w-full flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-700"}`}
                       >
-                        <LinkItem link={link} isActive={isActive} />
+                        <LinkItem isActive={isActive} link={link} />
                       </li>
                     );
                   })}
