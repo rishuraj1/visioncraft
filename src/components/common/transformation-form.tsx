@@ -30,6 +30,7 @@ import { aspectRatioOptions, transformationTypes } from "@/constants";
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import MediaUploader from "./media-uploader";
+import TransformedImage from "./transformed-image";
 
 interface TransformationFormProps {
   action: "Add" | "Update";
@@ -257,6 +258,15 @@ const TransformationForm = ({
                 type={type}
               />
             )}
+          />
+
+          <TransformedImage
+            image={image}
+            type={type}
+            title={form.getValues().title}
+            isTransforming={isTransforming}
+            setIsTransforming={setIsTransforming}
+            transformationConfig={transformationConfig}
           />
         </div>
 
