@@ -1,17 +1,8 @@
 "use client";
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetOverlay,
-  SheetPortal,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import React from "react";
+
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import LogoText from "./logo-text";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -66,7 +57,7 @@ export const navLinks = [
 const MobileNav = () => {
   const pathname = usePathname();
   return (
-    <header className="flex justify-between items-center shadow-md pr-5 lg:hidden">
+    <header className="flex justify-between items-center shadow-md lg:hidden">
       <Link href={"/"} className="flex gap-2 items-center md:py-2">
         <LogoText size="medium" />
       </Link>
