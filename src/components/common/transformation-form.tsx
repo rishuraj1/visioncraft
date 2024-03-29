@@ -29,6 +29,7 @@ import { InputField } from "./input-field";
 import { aspectRatioOptions, transformationTypes } from "@/constants";
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import MediaUploader from "./media-uploader";
 
 interface TransformationFormProps {
   action: "Add" | "Update";
@@ -241,6 +242,23 @@ const TransformationForm = ({
             )}
           </div>
         )}
+
+        <div className="grid h-fit min-h-[200px] grid-cols-1 gap-5 py-4 md:grid-cols-2">
+          <InputField
+            control={form.control}
+            name="publicId"
+            className="flex size-full flex-col"
+            render={({ field }) => (
+              <MediaUploader
+                onValueChange={field.onChange}
+                setImage={setImage}
+                publicId={field.value}
+                image={image}
+                type={type}
+              />
+            )}
+          />
+        </div>
 
         <div className="flex flex-col gap-4">
           <Button

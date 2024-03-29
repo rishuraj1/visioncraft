@@ -10,6 +10,7 @@ import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import LinkItem from "./link-item";
 import { Button } from "../ui/button";
+import { ToggleTheme } from "../toggle-theme";
 
 export const navLinks = [
   {
@@ -62,7 +63,8 @@ const MobileNav = () => {
         <LogoText size="medium" />
       </Link>
 
-      <nav className="flex gap-2">
+      <nav className="flex gap-3">
+        <ToggleTheme size="icon" className="flex-center bg-transparent" />
         <SignedIn>
           <Sheet>
             <SheetTrigger>
@@ -80,10 +82,7 @@ const MobileNav = () => {
                         key={link?.route}
                         className={`w-full flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-700"}`}
                       >
-                        <LinkItem
-                          className={`${isActive ? "text-zinc-400" : "text-zinc-500"}`}
-                          link={link}
-                        />
+                        <LinkItem isActive={isActive} link={link} />
                       </li>
                     );
                   })}
