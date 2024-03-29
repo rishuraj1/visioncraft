@@ -70,7 +70,10 @@ const Sidebar = () => {
                     key={link?.route}
                     className={`hidden w-full hover:bg-purple-gradient transition flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-600 hover:text-white hover:dark:text-white dark:text-zinc-500"}`}
                   >
-                    <LinkItem link={link} isActive={isActive} />
+                    <LinkItem
+                      link={link}
+                      className={`${isActive ? "text-zinc-400" : "text-zinc-500"}`}
+                    />
                   </li>
                 );
               })}
@@ -84,7 +87,10 @@ const Sidebar = () => {
                     key={link?.route}
                     className={`hidden w-full hover:bg-purple-gradient transition flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-600 hover:text-white hover:dark:text-white dark:text-zinc-500"}`}
                   >
-                    <LinkItem link={link} isActive={isActive} />
+                    <LinkItem
+                      link={link}
+                      className={`${isActive ? "text-zinc-400" : "text-zinc-500"}`}
+                    />
                   </li>
                 );
               })}

@@ -18,7 +18,7 @@ interface LinkItemProps {
     route: string;
     icon: string;
   };
-  isActive: boolean;
+  className?: string;
 }
 
 const Icon = ({ icon }: { icon: string }) => {
@@ -44,11 +44,11 @@ const Icon = ({ icon }: { icon: string }) => {
   }
 };
 
-const LinkItem = ({ link, isActive }: LinkItemProps) => {
+const LinkItem = ({ link, className }: LinkItemProps) => {
   return (
     <Link
       href={link?.route}
-      className="flex items-center gap-2 p-2 rounded-md w-full"
+      className={`${className} flex items-center gap-2 p-2 rounded-md w-full`}
     >
       <Icon icon={link?.icon} />
       {link?.label}

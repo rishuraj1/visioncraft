@@ -80,7 +80,10 @@ const MobileNav = () => {
                         key={link?.route}
                         className={`w-full flex-col items-start gap-2 rounded-md md:flex group ${isActive ? "bg-purple-gradient text-white" : "text-gray-700"}`}
                       >
-                        <LinkItem link={link} isActive={isActive} />
+                        <LinkItem
+                          className={`${isActive ? "text-zinc-400" : "text-zinc-500"}`}
+                          link={link}
+                        />
                       </li>
                     );
                   })}
