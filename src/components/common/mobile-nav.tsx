@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import LogoText from "./logo-text";
@@ -11,49 +9,7 @@ import { usePathname } from "next/navigation";
 import LinkItem from "./link-item";
 import { Button } from "../ui/button";
 import { ToggleTheme } from "../toggle-theme";
-
-export const navLinks = [
-  {
-    label: "Home",
-    route: "/",
-    icon: "Home",
-  },
-  {
-    label: "Image Restore",
-    route: "/transformations/add/restore",
-    icon: "Image",
-  },
-  {
-    label: "Generative Fill",
-    route: "/transformations/add/fill",
-    icon: "Sparkles",
-  },
-  {
-    label: "Object Remove",
-    route: "/transformations/add/remove",
-    icon: "ScanEye",
-  },
-  {
-    label: "Object Recolor",
-    route: "/transformations/add/recolor",
-    icon: "Settings2",
-  },
-  {
-    label: "Background Remove",
-    route: "/transformations/add/removeBackground",
-    icon: "Camera",
-  },
-  {
-    label: "Profile",
-    route: "/profile",
-    icon: "User",
-  },
-  {
-    label: "Buy Credits",
-    route: "/credits",
-    icon: "CreditCard",
-  },
-];
+import { navLinks } from "@/constants";
 
 const MobileNav = () => {
   const pathname = usePathname();

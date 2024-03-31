@@ -50,7 +50,7 @@ const TransformedImage = ({
             width={getImageSize(type, image, "width")}
             height={getImageSize(type, image, "height")}
             placeholder={dataUrl as PlaceholderValue}
-            className="h-fit min-h-72 w-full rounded-[10px] border border-dashed bg-purple-100/20 object-cover p-2"
+            className="h-fit min-h-72 w-full rounded-[10px] border border-dashed bg-purple-100/20 dark:bg-transparent object-cover p-2"
             onLoad={() => setIsTransforming && setIsTransforming(false)}
             onError={() => {
               debounce(() => {

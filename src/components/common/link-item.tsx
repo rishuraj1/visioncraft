@@ -21,7 +21,7 @@ interface LinkItemProps {
   isActive: boolean;
 }
 
-const Icon = ({ icon }: { icon: string }) => {
+export const Icon = ({ icon }: { icon: string }) => {
   switch (icon) {
     case "Home":
       return <Home />;
