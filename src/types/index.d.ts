@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import { IImage } from "@/lib/database/models/image.model";
+
 // ====== USER PARAMS
 declare type CreateUserParams = {
   clerkId: string;
@@ -19,38 +21,13 @@ declare type UpdateUserParams = {
 
 // ====== IMAGE PARAMS
 declare type AddImageParams = {
-  image: {
-    title: string;
-    publicId: string;
-    transformationType: string;
-    width: number;
-    height: number;
-    config: any;
-    secureURL: string;
-    transformationURL: string;
-    aspectRatio: string | undefined;
-    prompt: string | undefined;
-    color: string | undefined;
-  };
+  image: IImage;
   userId: string;
   path: string;
 };
 
 declare type UpdateImageParams = {
-  image: {
-    _id: string;
-    title: string;
-    publicId: string;
-    transformationType: string;
-    width: number;
-    height: number;
-    config: any;
-    secureURL: string;
-    transformationURL: string;
-    aspectRatio: string | undefined;
-    prompt: string | undefined;
-    color: string | undefined;
-  };
+  image: IImage;
   userId: string;
   path: string;
 };
@@ -119,7 +96,7 @@ declare type SearchParamProps = {
 };
 
 declare type TransformedImageProps = {
-  image: any;
+  image: IImage | null;
   type: string;
   title: string;
   transformationConfig: Transformations | null;

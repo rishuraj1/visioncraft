@@ -38,13 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <ToggleTheme
-              size="icon"
-              className="absolute lg:flex hidden bottom-6 left-52"
-            />
-            {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </ThemeProvider>
       </body>
     </html>

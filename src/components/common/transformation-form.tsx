@@ -31,6 +31,7 @@ import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import MediaUploader from "./media-uploader";
 import TransformedImage from "./transformed-image";
+import { updateCredits } from "@/lib/actions/user.actions";
 
 interface TransformationFormProps {
   action: "Add" | "Update";
@@ -139,9 +140,8 @@ const TransformationForm = ({
 
     setNewTransformation(null);
 
-    // TODO: return to update credits
     startTransition(async () => {
-      // await updateCredits(userId, creditBalance - 1);
+      await updateCredits(userId, -1);
     });
   };
 

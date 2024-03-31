@@ -7,6 +7,7 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import LinkItem from "./link-item";
 import { Button } from "../ui/button";
+import { ToggleTheme } from "../toggle-theme";
 
 export const navLinks = [
   {
@@ -88,8 +89,9 @@ const Sidebar = () => {
                   </li>
                 );
               })}
-              <li className="flex items-center justify-center cursor-pointer gap-2 p-2">
+              <li className="flex items-center justify-between cursor-pointer gap-24 p-2">
                 <UserButton afterSignOutUrl="/" showName />
+                <ToggleTheme />
               </li>
             </ul>
           </SignedIn>
