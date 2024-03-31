@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 
-import { IImage } from "@/lib/database/models/image.model";
-
 // ====== USER PARAMS
 declare type CreateUserParams = {
   clerkId: string;
@@ -21,13 +19,38 @@ declare type UpdateUserParams = {
 
 // ====== IMAGE PARAMS
 declare type AddImageParams = {
-  image: IImage;
+  image: {
+    title: string;
+    publicId: string;
+    transformationType: string;
+    width: number;
+    height: number;
+    config: any;
+    secureUrl: string;
+    transformationUrl: string;
+    aspectRatio: string | undefined;
+    prompt: string | undefined;
+    color: string | undefined;
+  };
   userId: string;
   path: string;
 };
 
 declare type UpdateImageParams = {
-  image: IImage;
+  image: {
+    _id: string;
+    title: string;
+    publicId: string;
+    transformationType: string;
+    width: number;
+    height: number;
+    config: any;
+    secureUrl: string;
+    transformationUrl: string;
+    aspectRatio: string | undefined;
+    prompt: string | undefined;
+    color: string | undefined;
+  };
   userId: string;
   path: string;
 };
