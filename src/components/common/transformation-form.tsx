@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -28,13 +28,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { InputField } from "./input-field";
-import { aspectRatioOptions, transformationTypes } from "@/constants";
+import {
+  aspectRatioOptions,
+  creditFee,
+  transformationTypes,
+} from "@/constants";
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import MediaUploader from "./media-uploader";
 import TransformedImage from "./transformed-image";
 import { updateCredits } from "@/lib/actions/user.actions";
 import { addImage, updateImage } from "@/lib/actions/image.actions";
+import { InsufficientCreditsModal } from "./insufficient-credits-modal";
 
 interface TransformationFormProps {
   action: "Add" | "Update";
@@ -204,13 +209,20 @@ const TransformationForm = ({
     setNewTransformation(null);
 
     startTransition(async () => {
-      await updateCredits(userId, -1);
+      await updateCredits(userId, creditFee);
     });
   };
+
+  useEffect(() => {
+    if (image && (type === "restore" || type === "removeBackground")) {
+      setNewTransformation(transformationType.config);
+    }
+  }, [image, transformationType.config, type]);
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         <InputField
           control={form.control}
           name="title"

@@ -82,21 +82,21 @@ export const transformationTypes = {
     title: "Restore Image",
     subTitle: "Refine images by removing noise and imperfections",
     config: { restore: true },
-    icon: "image.svg",
+    icon: "Image",
   },
   removeBackground: {
     type: "removeBackground",
     title: "Background Remove",
     subTitle: "Removes the background of the image using AI",
     config: { removeBackground: true },
-    icon: "camera.svg",
+    icon: "Camera",
   },
   fill: {
     type: "fill",
     title: "Generative Fill",
     subTitle: "Enhance an image's dimensions using AI outpainting",
     config: { fillBackground: true },
-    icon: "stars.svg",
+    icon: "Sparkles",
   },
   remove: {
     type: "remove",
@@ -105,7 +105,7 @@ export const transformationTypes = {
     config: {
       remove: { prompt: "", removeShadow: true, multiple: true },
     },
-    icon: "scan.svg",
+    icon: "ScanEye",
   },
   recolor: {
     type: "recolor",
@@ -114,7 +114,7 @@ export const transformationTypes = {
     config: {
       recolor: { prompt: "", to: "", multiple: true },
     },
-    icon: "filter.svg",
+    icon: "Settings2",
   },
 };
 
@@ -138,3 +138,48 @@ export const aspectRatioOptions = {
     height: 1778,
   },
 };
+
+export const navLinks = [
+  {
+    label: "Home",
+    route: "/",
+    icon: "Home",
+  },
+  {
+    label: "Image Restore",
+    route: "/transformations/add/restore",
+    icon: "Image",
+  },
+  {
+    label: "Generative Fill",
+    route: "/transformations/add/fill",
+    icon: "Sparkles",
+  },
+  {
+    label: "Object Remove",
+    route: "/transformations/add/remove",
+    icon: "ScanEye",
+  },
+  {
+    label: "Object Recolor",
+    route: "/transformations/add/recolor",
+    icon: "Settings2",
+  },
+  {
+    label: "Background Remove",
+    route: "/transformations/add/removeBackground",
+    icon: "Camera",
+  },
+  {
+    label: "Profile",
+    route: "/profile",
+    icon: "User",
+  },
+  {
+    label: "Buy Credits",
+    route: "/credits",
+    icon: "CreditCard",
+  },
+];
+
+export const creditFee = -1;
