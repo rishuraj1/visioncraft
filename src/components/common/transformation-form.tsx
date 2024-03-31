@@ -4,6 +4,8 @@ import { useState, useTransition } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { getCldImageUrl } from "next-cloudinary";
+import { useRouter } from "next/navigation";
 
 import { IImage } from "@/lib/database/models/image.model";
 import { Button } from "@/components/ui/button";
@@ -31,6 +33,8 @@ import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import MediaUploader from "./media-uploader";
 import TransformedImage from "./transformed-image";
+import { updateCredits } from "@/lib/actions/user.actions";
+import { addImage, updateImage } from "@/lib/actions/image.actions";
 
 interface TransformationFormProps {
   action: "Add" | "Update";
@@ -65,6 +69,7 @@ const TransformationForm = ({
   creditBalance,
   config = null,
 }: TransformationFormProps) => {
+  const router = useRouter();
   const transformationType = transformationTypes[type];
 
   const [image, setImage] = useState<IImage | null>(data);
@@ -92,9 +97,68 @@ const TransformationForm = ({
     defaultValues: initialFormValues,
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-  };
+    setIsSubmitting(true);
+    if (data || image) {
+      const transformationUrl = getCldImageUrl({
+        width: image?.width,
+        height: image?.height,
+        src: image?.publicId as string,
+        ...transformationConfig,
+      });
+
+      const imageData = {
+        title: values.title as string,
+        publicId: image?.publicId as string,
+        transformationType: type as string,
+        width: image?.width as number,
+        height: image?.height as number,
+        config: transformationConfig as any,
+        secureUrl: image?.secureUrl as string,
+        transformationUrl: transformationUrl as string,
+        aspectRatio: values?.aspectRatio,
+        prompt: values?.prompt,
+        color: values?.color,
+      };
+      console.log(imageData);
+
+      if (action === "Add") {
+        try {
+          const newImage = await addImage({
+            image: imageData,
+            userId,
+            path: "/",
+          });
+          if (newImage) {
+            form.reset();
+            setImage(data);
+            router.push(`/transformations/${newImage?._id}`);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      if (action === "Update") {
+        try {
+          const updatedImage = await updateImage({
+            image: {
+              ...imageData,
+              _id: data?._id,
+            },
+            userId,
+            path: `/transformations/${data?._id}`,
+          });
+          if (updatedImage) {
+            router.push(`/transformations/${updatedImage?._id}`);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+    setIsSubmitting(false);
+  }
 
   const onSelectFieldHandler = (
     value: string,
@@ -139,9 +203,8 @@ const TransformationForm = ({
 
     setNewTransformation(null);
 
-    // TODO: return to update credits
     startTransition(async () => {
-      // await updateCredits(userId, creditBalance - 1);
+      await updateCredits(userId, -1);
     });
   };
 

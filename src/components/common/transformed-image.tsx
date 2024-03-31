@@ -1,6 +1,9 @@
 import { IImage } from "@/lib/database/models/image.model";
 import Image from "next/image";
-import { DownloadCloud } from "lucide-react";
+import { DownloadCloud, Loader2 } from "lucide-react";
+import { CldImage } from "next-cloudinary";
+import { dataUrl, debounce, getImageSize } from "@/lib/utils";
+import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 
 interface TransformedImageProps {
   image: IImage | null;
@@ -39,7 +42,25 @@ const TransformedImage = ({
       </div>
 
       {image?.publicId && transformationConfig ? (
-        <div className="relative"></div>
+        <div className="relative">
+          <CldImage
+            src={image?.publicId}
+            sizes={"(max-width: 767px) 100vw, 50vw"}
+            alt={image?.title}
+            width={getImageSize(type, image, "width")}
+            height={getImageSize(type, image, "height")}
+            placeholder={dataUrl as PlaceholderValue}
+            className="h-fit min-h-72 w-full rounded-[10px] border border-dashed bg-purple-100/20 object-cover p-2"
+            onLoad={() => setIsTransforming && setIsTransforming(false)}
+            onError={() => {
+              debounce(() => {
+                setIsTransforming && setIsTransforming(false);
+              }, 8000);
+            }}
+            {...transformationConfig}
+          />
+          {isTransforming && <Loader2 className="absolute animate-spin" />}
+        </div>
       ) : (
         <div className="flex-center p-14-medium h-full min-h-72 flex-col gap-5 rounded-[16px] border border-dashed dark:bg-none bg-purple-100/20 shadow-inner">
           Transformed Image
