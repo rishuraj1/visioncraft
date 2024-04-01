@@ -3,6 +3,7 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "qs";
 import { twMerge } from "tailwind-merge";
+import moment from "moment";
 
 import { aspectRatioOptions } from "@/constants";
 
@@ -154,4 +155,9 @@ export const deepMergeObjects = (obj1: any, obj2: any) => {
   }
 
   return output;
+};
+
+// Convert timestamps to date
+export const convertTime = (timestamp: Date) => {
+  return moment.locale("en") && moment(timestamp).fromNow();
 };
