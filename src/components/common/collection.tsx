@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Icon } from "./link-item";
 import { Search } from "@/components/common/search";
 import { SearchX } from "lucide-react";
+import { UserAvatar } from "./user-avatar";
 
 export const Collection = ({
   hasSearch = false,
@@ -129,10 +130,21 @@ const Card = ({ image }: { image: IImage }) => {
             }
           />
         </div>
-        <div className="flex justify-between items-center mt-2">
-          <p className="text-[14px] leading-[140%] text-dark-400 dark:text-dark-500">
-            {image.author?.firstName as string}
-          </p>
+        <div className="flex justify-between items-end mt-2">
+          <div className="flex items-end gap-1">
+            <UserAvatar
+              src={image?.author?.photo as string}
+              name={image?.author?.firstName}
+            />
+            <p className="flex flex-col ">
+              <span className="dark:text-zinc-600 text-[12px]">
+                @{image?.author?.username}
+              </span>
+              <span className="text-[16px] leading-[140%] text-dark-400 dark:text-white/60">
+                {image.author?.firstName as string}
+              </span>
+            </p>
+          </div>
           <p className="text-[14px] leading-[140%] text-dark-400 dark:text-dark-500">
             {time}
           </p>
