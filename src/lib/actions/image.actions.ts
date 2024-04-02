@@ -14,7 +14,6 @@ const populateUser = (query: any) => {
   return query.populate({
     path: "author",
     model: model("User"),
-    select: "_id firstname lastname",
   });
 };
 
@@ -108,9 +107,11 @@ export async function getAllImages({
 
     let expression = "folder=visioncraft";
 
+    console.log(searchQuery);
     if (searchQuery) {
       expression += ` AND ${searchQuery}`;
     }
+    console.log(expression);
     const { resources } = await cloudinary.search
       .expression(expression)
       .execute();

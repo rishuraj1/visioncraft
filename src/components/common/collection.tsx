@@ -12,11 +12,13 @@ import {
 } from "@/components/ui/pagination";
 import { transformationTypes } from "@/constants";
 import { IImage } from "@/lib/database/models/image.model";
-import { formUrlQuery } from "@/lib/utils";
+import { convertTime, formUrlQuery } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { Icon } from "./link-item";
 import { Search } from "@/components/common/search";
+import { SearchX } from "lucide-react";
+import { UserAvatar } from "./user-avatar";
 
 export const Collection = ({
   hasSearch = false,
@@ -61,7 +63,8 @@ export const Collection = ({
           ))}
         </ul>
       ) : (
-        <div className="flex-center h-60 w-full rounded-[10px] border border-dark-400/10 bg-white/20 dark:bg-transparent dark:border-none">
+        <div className="flex justify-center items-center flex-col gap-2 h-60 w-full rounded-[10px] border border-dark-400/10 bg-white/20 dark:bg-transparent dark:border-none">
+          <SearchX className="w-8 h-8 mr-3" />
           <p className="font-semibold text-[20px] leading-[140%]">Empty List</p>
         </div>
       )}
@@ -96,6 +99,9 @@ export const Collection = ({
 };
 
 const Card = ({ image }: { image: IImage }) => {
+  console.log(image);
+  const time = convertTime(image?.updatedAt as Date);
+  console.log(time);
   return (
     <li>
       <Link
@@ -123,6 +129,25 @@ const Card = ({ image }: { image: IImage }) => {
               ].icon
             }
           />
+        </div>
+        <div className="flex justify-between items-end mt-2">
+          <div className="flex items-end gap-1">
+            <UserAvatar
+              src={image?.author?.photo as string}
+              name={image?.author?.firstName}
+            />
+            <p className="flex flex-col ">
+              <span className="dark:text-zinc-600 text-[12px]">
+                @{image?.author?.username}
+              </span>
+              <span className="text-[16px] leading-[140%] text-dark-400 dark:text-white/60">
+                {image.author?.firstName as string}
+              </span>
+            </p>
+          </div>
+          <p className="text-[14px] leading-[140%] text-dark-400 dark:text-dark-500">
+            {time}
+          </p>
         </div>
       </Link>
     </li>

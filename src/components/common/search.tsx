@@ -42,7 +42,7 @@ export const Search = () => {
       } else {
         const newUrl = removeKeysFromQuery({
           searchParams: searchParams.toString(),
-          keysToRemove: ["query"],
+          keysToRemove: [`${searchBy.toLowerCase()}`, `query`],
         });
 
         router.push(newUrl, { scroll: false });
@@ -50,7 +50,7 @@ export const Search = () => {
     }, 300);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [router, searchParams, query]);
+  }, [router, searchParams, query, searchBy]);
 
   return (
     <div className="flex items-center dark:bg-gray-900 w-full rounded-[16px] border-2 border-purple-200/20 bg-white px-4 shadow-sm shadow-purple-200/15 md:max-w-96">
