@@ -126,7 +126,6 @@ const TransformationForm = ({
         prompt: values?.prompt,
         color: values?.color,
       };
-      console.log(imageData);
 
       if (action === "Add") {
         try {
@@ -195,9 +194,8 @@ const TransformationForm = ({
           [fieldName === "prompt" ? "prompt" : "to"]: value,
         },
       }));
-
-      return onChangeField(value);
-    }, 1000);
+    }, 1000)();
+    return onChangeField(value);
   };
 
   const onTransformHandler = async () => {
@@ -272,14 +270,18 @@ const TransformationForm = ({
           <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
             <InputField
               control={form.control}
-              name="color"
+              name="prompt"
               formLabel={
                 type === "remove" ? "Object to Remove" : "Object to Recolor"
               }
               className="w-full"
               render={({ field }) => (
                 <Input
-                  placeholder="Enter object to remove"
+                  placeholder={
+                    type === "remove"
+                      ? "Enter object to remove"
+                      : "Enter object to recolor"
+                  }
                   value={field.value}
                   className="rounded-[16px] border-2 border-purple-200/20 shadow-sm shadow-purple-200/15 text-dark-600 dark:text-zinc-400 disabled:opacity-100 p-16-semibold h-[50px] md:h-[54px] focus-visible:ring-offset-0 px-4 py-3 focus-visible:ring-transparent !important"
                   onChange={(e) =>
