@@ -85,7 +85,6 @@ declare type CreateTransactionParams = {
   credits: number;
   plan: string;
   buyerId: string;
-  createdAt: Date;
 };
 
 declare type TransformationTypeKey =

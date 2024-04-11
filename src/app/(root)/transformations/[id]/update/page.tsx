@@ -17,7 +17,6 @@ const Page = async ({ params: { id } }: SearchParamProps) => {
 
   const transformation =
     transformationTypes[image.transformationType as TransformationTypeKey];
-  console.log(transformation);
 
   return (
     <>

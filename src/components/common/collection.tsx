@@ -99,9 +99,7 @@ export const Collection = ({
 };
 
 const Card = ({ image }: { image: IImage }) => {
-  console.log(image);
   const time = convertTime(image?.updatedAt as Date);
-  console.log(time);
   return (
     <li>
       <Link
